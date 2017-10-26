@@ -5,8 +5,8 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.10'
-    compile 'io.javaslang:javaslang:2.1.0-alpha'
+    compile 'org.codehaus.groovy:groovy-all:2.4.12'
+    compile 'io.vavr:vavr:0.9.1'
 
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
 }

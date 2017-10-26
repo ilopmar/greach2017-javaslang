@@ -1,8 +1,8 @@
 package demo
 
-import javaslang.control.Option
-import javaslang.control.Option.None
-import javaslang.control.Option.Some
+import io.vavr.control.Option
+import io.vavr.control.Option.None
+import io.vavr.control.Option.Some
 import spock.lang.Specification
 
 class E1_Option extends Specification {
@@ -15,7 +15,7 @@ class E1_Option extends Specification {
             thrown NullPointerException
     }
 
-    void 'Javaslang Option of null'() {
+    void 'Vavr Option of null'() {
         when:
             def option = Option.of(null)
 
@@ -27,13 +27,13 @@ class E1_Option extends Specification {
 
     void 'Convert Optional to Option'() {
         given:
-            def javaOptional = Optional.of('Hello World')
+            def java8Optional = Optional.of('Hello World')
 
         when:
-            def javaslangOption = Option.ofOptional(javaOptional)
+            def vavrOption = Option.ofOptional(java8Optional)
 
         then:
-            javaslangOption instanceof Some
+            vavrOption instanceof Some
     }
 
     void 'Use map with an Option with value'() {
@@ -61,10 +61,10 @@ class E1_Option extends Specification {
             Option<String> optionName = UserService
                 .findUserByName('')
                 .map { u -> u.name.toUpperCase() }
-                .orElse(Option.of('John'))
+                .orElse(Option.of('Default Value'))
 
         expect:
-            optionName.get() == 'John'
+            optionName.get() == 'Default Value'
     }
 
     void 'Get an alternative value (II)'() {
@@ -74,6 +74,6 @@ class E1_Option extends Specification {
                 .map { u -> u.name.toUpperCase() }
 
         expect:
-            optionName.getOrElse('John') == 'John'
+            optionName.getOrElse('Default Value') == 'Default Value'
     }
 }

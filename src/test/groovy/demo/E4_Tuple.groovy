@@ -1,27 +1,26 @@
 package demo
 
-import javaslang.Tuple2
+import io.vavr.Tuple2
 import spock.lang.Specification
 
 class E4_Tuple extends Specification {
 
     void 'Get some data from a Tuple'() {
         given:
-            def userInfo = MultipleValues.someUserInfo('Iván', 37)
+            Tuple2<String, Integer> userInfo = TupleUtils.someUserInfo('Iván', 37)
 
         expect:
-            userInfo._1 == 'IVÁN'
-            userInfo._2 == 27
-            userInfo._3 == true
+            userInfo._1() == 'IVÁN'
+            userInfo._2() == 27
     }
 
     void 'Some methods on Tuple'() {
         given:
-            def userInfo = MultipleValues.someUserInfo('Iván', 37)
+            Tuple2<String, Integer> userInfo = TupleUtils.someUserInfo('Iván', 37)
 
         expect:
-            userInfo.map1 { name -> name.toLowerCase().reverse() }._1 == 'návi'
-            userInfo.apply { name, age, isMarried -> "${name}-${age}-${isMarried}" } == 'IVÁN-27-true'
+            userInfo.map1 { name -> name.toLowerCase().reverse() }._1() == 'návi'
+            userInfo.apply { name, age -> "${name}-${age}" } == 'IVÁN-27'
     }
 
     void 'Compare tuples'() {

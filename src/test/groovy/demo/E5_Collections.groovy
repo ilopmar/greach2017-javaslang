@@ -1,11 +1,11 @@
 package demo
 
-import javaslang.collection.List
+import io.vavr.collection.List
 import spock.lang.Specification
 
 class E5_Collections extends Specification {
 
-    void 'Javaslang List'() {
+    void 'Vavr List'() {
         given:
             List<Integer> list = List.of(1, 2, 3, 4)
 

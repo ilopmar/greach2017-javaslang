@@ -1,7 +1,7 @@
 package demo
 
-import javaslang.control.Validation.Invalid
-import javaslang.control.Validation.Valid
+import io.vavr.control.Validation.Invalid
+import io.vavr.control.Validation.Valid
 import spock.lang.Specification
 
 class E7_Validation extends Specification {
@@ -14,7 +14,7 @@ class E7_Validation extends Specification {
 
         expect:
             validator instanceof Valid
-            validator.toString() == "Valid(demo.User(Iván López, 37))"
+            validator.toString() == "Valid(User{name='Iván López', age=37})"
             def user = validator.get()
             user instanceof User
             user.name == 'Iván López'
@@ -23,7 +23,7 @@ class E7_Validation extends Specification {
 
     void 'Validate a user with wrong parameters'() {
         given:
-            def validator = userValidator.validate('Wrong ? ¿ !"%/()Characters', -50)
+            def validator = userValidator.validate('Wrong ? ¿ !"%/()Characters', -42)
 
         expect:
             validator instanceof Invalid
